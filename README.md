@@ -1,2 +1,6 @@
 # homebrew-dvc
-Homebrew package for dvc tool - dataversioncontrol.com
+Homebrew tap for dvc tool - dataversioncontrol.com
+## Casks
+```
+brew casks install dataversioncontrol/homebrew-dvc/dvc
+```
