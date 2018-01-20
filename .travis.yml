@@ -1,0 +1,5 @@
+os: osx
+install:
+  - brew install dataversioncontrol/homebrew-dvc/dvc
+script:
+  - dvc --help
