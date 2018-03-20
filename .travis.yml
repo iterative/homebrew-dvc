@@ -1,5 +1,8 @@
 os: osx
-install:
-  - brew install dataversioncontrol/homebrew-dvc/dvc
 script:
+  - brew install ./dvc
   - dvc --help
+  - brew uninstall dvc
+  - brew cask install ./dvc
+  - dvc --help
+  - brew cask uninstall dvc
