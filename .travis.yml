@@ -3,9 +3,9 @@ osx_image: xcode9.3
 language: ruby
 rvm: 2.4.0
 script:
-  - brew install dataversioncontrol/homebrew-dvc/dvc
+  - brew install iterative/homebrew-dvc/dvc
   - dvc --help
   - brew uninstall dvc
-  - brew cask install dataversioncontrol/homebrew-dvc/dvc
+  - brew cask install iterative/homebrew-dvc/dvc
   - dvc --help
   - brew cask uninstall dvc
