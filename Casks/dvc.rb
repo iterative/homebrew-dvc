@@ -1,7 +1,7 @@
 cask 'dvc' do
   name 'Data Version Control'
   homepage 'https://dataversioncontrol.com'
-  version '0.19.8'
+  version '0.19.9'
   url "https://github.com/iterative/dvc/releases/download/#{version}/dvc-#{version}.pkg"
   sha256 :no_check
 
