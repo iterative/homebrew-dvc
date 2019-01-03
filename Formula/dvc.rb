@@ -14,6 +14,7 @@ class Dvc < Formula
 #	                      "--ignore-installed", buildpath
     system libexec/"bin/pip", "uninstall", "-y", "dvc"
     system libexec/"bin/pip", "install", "dvc[all]"
+    system libexec/"bin/pip", "uninstall", "-y", "Pillow"
     venv.pip_install_and_link buildpath
   end
 
