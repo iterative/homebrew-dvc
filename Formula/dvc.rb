@@ -10,7 +10,9 @@ class Dvc < Formula
 
   def install
     venv = virtualenv_create(libexec, "python2")
-    system libexec/"bin/pip", "install", "-r", "requirements.txt"
+    system libexec/"bin/pip", "install", "-v", "--no-binary", ":all:",
+                              "--ignore-installed", buildpath
+    system libexec/"bin/pip", "uninstall", "-y", name
     venv.pip_install_and_link buildpath
   end
 
