@@ -11,6 +11,12 @@ class Dvc < Formula
   def install
     venv = virtualenv_create(libexec)
     system libexec/"bin/pip", "install", "-r", "requirements.txt"
+    # NOTE: dvc depends on asciimatics, which depends on Pillow, which
+    # uses liblcms2.2.dylib that causes troubles on mojave. See
+    # https://github.com/iterative/homebrew-dvc/issues/9 for more info.
+    # As a workaround, we need to simply uninstall Pillow before our
+    # next step.
+    system libexec/"bin/pip", "uninstall", "-y", "Pillow"
     venv.pip_install_and_link buildpath
   end
 
