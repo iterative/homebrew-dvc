@@ -7,7 +7,6 @@ class Dvc < Formula
 
   depends_on "pkg-config" => :build
   depends_on "python"
-  depends_on
 
   def install
     venv = virtualenv_create(libexec)
