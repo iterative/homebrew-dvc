@@ -9,7 +9,11 @@ class Dvc < Formula
   depends_on "python"
 
   def install
-    virtualenv_install_with_resources
+    venv = virtualenv_create(libexec, "python3")
+    system libexec/"bin/pip", "install", "-v", "--no-binary", ":all:",
+	                      "--ignore-installed", buildpath
+    system libexec/"bin/pip", "install", "--upgrade", "dvc"
+    venv.pip_install_and_link buildpath
   end
 
   test do
