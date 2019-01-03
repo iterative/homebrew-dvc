@@ -7,6 +7,7 @@ class Dvc < Formula
 
   depends_on "pkg-config" => :build
   depends_on "python"
+  depends_on
 
   def install
     venv = virtualenv_create(libexec)
@@ -16,7 +17,9 @@ class Dvc < Formula
     # https://github.com/iterative/homebrew-dvc/issues/9 for more info.
     # As a workaround, we need to simply uninstall Pillow before our
     # next step.
+    system libexec/"bin/pip", "uninstall", "-y", "asciimatics"
     system libexec/"bin/pip", "uninstall", "-y", "Pillow"
+    system libexec/"bin/pip", "install", "git+https://github.com/efiop/asciimatics"
     venv.pip_install_and_link buildpath
   end
 
