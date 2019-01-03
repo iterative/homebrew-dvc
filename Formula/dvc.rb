@@ -12,7 +12,7 @@ class Dvc < Formula
     venv = virtualenv_create(libexec, "python3")
     system libexec/"bin/pip", "install", "-v", "--no-binary", ":all:",
 	                      "--ignore-installed", buildpath
-    system libexec/"bin/pip", "install", "--upgrade", "dvc"
+    system libexec/"bin/pip", "install", "--upgrade", "dvc[all]"
     venv.pip_install_and_link buildpath
   end
 
