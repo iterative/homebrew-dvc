@@ -7,5 +7,5 @@ cask 'dvc' do
 
   pkg "dvc-#{version}.pkg"
 
-  uninstall pkgutil: 'com.dataversioncontrol.dvc'
+  uninstall pkgutil: 'com.iterative.dvc'
 end
