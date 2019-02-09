@@ -10,7 +10,6 @@ class Dvc < Formula
 
   def install
     venv = virtualenv_create(libexec)
-    system libexec/"bin/pip", "install", "gitpython"
     system libexec/"bin/pip", "install", "-r", "requirements.txt"
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See
