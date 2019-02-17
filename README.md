@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/iterative/homebrew-dvc.svg?branch=master)](https://travis-ci.org/iterative/homebrew-dvc)
+[![Build Status](https://travis-ci.com/iterative/homebrew-dvc.svg?branch=master)](https://travis-ci.com/iterative/homebrew-dvc)
 # homebrew-dvc
-Homebrew tap for dvc tool - dataversioncontrol.com
+Homebrew tap for dvc tool - dvc.org
 ## Formula
 ```
 brew install iterative/homebrew-dvc/dvc
