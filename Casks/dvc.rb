@@ -5,7 +5,7 @@ cask 'dvc' do
   url "https://github.com/iterative/dvc/releases/download/#{version}/dvc-#{version}.pkg"
   sha256 :no_check
 
-  depends_on macos: :sierra
+  depends_on macos: '>= :sierra'
 
   pkg "dvc-#{version}.pkg"
 
