@@ -4,23 +4,9 @@ language: ruby
 rvm: 2.4.0
 script:
   - sudo xcode-select --reset  # NOTE: https://github.com/Homebrew/legacy-homebrew/issues/24014
-  - brew install --build-bottle iterative/homebrew-dvc/dvc
+  - brew install iterative/homebrew-dvc/dvc
   - dvc --help
   - brew uninstall dvc
   - brew cask install iterative/homebrew-dvc/dvc
   - dvc --help
   - brew cask uninstall dvc
-before_deploy:
-  - brew bottle dvc
-  - export TRAVIS_TAG=$(brew info --json dvc | jq '.[].versions.stable')
-  - git tag -f $TRAVIS_TAG
-deploy:
-  - provider: releases
-    api_key:                                                                      
-      secure: awZwTNK7Etn/RaQbOJhsvpBYQYDZg3hwg2O5IajdXCLYDFGnNCXAcgMxMoySVC7EdbdLLjORK3DMbTnwkBhzpg4mSlj/mRPhFi/oIc6/Xsd/BjgMk2ZNMBEsPZLB+Yh1f0kXLuIZsZVlzQCiI6CnMZ9B55BbIC3VjSp5OawTTf4Ki3o8/4HueMBoFeN4k34tyABbncVwragy62Et8qETiPW9647F7uPvjHN2mcOBTXKVU+K2SxQ2neT4qZkV35U18B5P4lZZELuY5Tx/H5BZfwjhINLvTTeWMLg1eYCXk0PFHFCDpbmdv8/8rL1ZifKV4xtI0AHjYUuglfgjOPBRFulkc2gvlCsNIwE20x1oaql0ZP0tg8oBcJRxfb02zFT5e9J84VQPMUC2X8JTGYoWd9NjSOcucbw+kh5AOIT9CiFG4M9oOzpK7x9foZuzmElk0/n4qPJlh3dBZT5pv8/qOsqx4xWazqzhjtxi5KaVyVQ5efcz4rOWikirlnZ6/MbsLQo3TF1NCsi5kcCDf0RnvhF4llsEnCl0SRDY9G8DHeXpOMnrXjaS5n0M7OkRdQfmCEGKONa4rrDQUzNNzOEZNLfoKzI+/9ti4gMkEFzfiJ5gkbWdGknG/4wvX02g7y2wgJjWoPSvCJtZwqWWzTSXDjSrpBjP+NPD0ModlRnpxFA=
-    file_glob: true
-    file: dvc-*.bottle.tar.gz
-    skip_cleanup: true
-    overwrite: true
-    on:
-      repo: iterative/homebrew-dvc
