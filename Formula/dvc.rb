@@ -2,7 +2,7 @@ class Dvc < Formula
   include Language::Python::Virtualenv
 
   desc "Git for data science projects"
-  homepage "https://dataversioncontrol.com/"
+  homepage "https://dvc.org"
   url "https://github.com/iterative/dvc/archive/0.59.2.tar.gz"
 
   depends_on "pkg-config" => :build
