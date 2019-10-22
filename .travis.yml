@@ -1,7 +1,7 @@
 os: osx
 osx_image: xcode10.1
 language: ruby
-rvm: 2.4.0
+rvm: 2.4.3
 script:
   - sudo xcode-select --reset  # NOTE: https://github.com/Homebrew/legacy-homebrew/issues/24014
   - brew install iterative/homebrew-dvc/dvc
