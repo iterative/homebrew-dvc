@@ -21,7 +21,6 @@ class Dvc < Formula
     # [2] https://github.com/iterative/homebrew-dvc/issues/9
     system libexec/"bin/pip", "uninstall", "-y", "Pillow"
     system libexec/"bin/pip", "uninstall", "-y", "dvc"
-    bin.install_symlink libexec/"bin/dvc"
     venv.pip_install_and_link buildpath
 
     bash_completion.install "scripts/completion/dvc.bash" => "dvc"
