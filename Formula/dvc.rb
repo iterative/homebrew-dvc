@@ -7,6 +7,7 @@ class Dvc < Formula
   sha256 "176ed93e439f401ee6153fc2fcc8216ad3bc9bfe96594aa74183513893dc2e03"
 
   depends_on "pkg-config" => :build
+  depends_on "openssl"
   depends_on "python"
 
   def install
