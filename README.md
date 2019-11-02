@@ -7,7 +7,3 @@ Homebrew tap for dvc tool - dvc.org
 ```
 brew install iterative/homebrew-dvc/dvc
 ```
-## Casks
-```
-brew cask install iterative/homebrew-dvc/dvc
-```
