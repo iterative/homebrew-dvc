@@ -5,6 +5,3 @@ script:
   - brew install iterative/homebrew-dvc/dvc
   - dvc --help
   - brew uninstall dvc
-  - brew cask install iterative/homebrew-dvc/dvc
-  - dvc --help
-  - brew cask uninstall dvc
