@@ -4,7 +4,7 @@ class Dvc < Formula
   desc "Git for data science projects"
   homepage "https://dvc.org"
   url "https://github.com/iterative/dvc/archive/0.67.1.tar.gz"
-  sha256 "a6c97075e242b310d310d7f8ae24bf1af7c66e3dafc8e6a248af2c5a5c1a9d68"
+  sha256 "948b584a4f8bd71efeb8dd4c6b6e40493ddb705ce06dd8343cafef12217f3f56"
 
   depends_on "pkg-config" => :build
   depends_on "openssl"
