@@ -12,6 +12,7 @@ class Dvc < Formula
 
   def install
     venv = virtualenv_create(libexec)
+    system "echo", "'PKG = \"brew\"'", ">", "dvc/utils/build.py"
     system libexec/"bin/pip", "install", ".[all]"
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See [1]
@@ -29,6 +30,6 @@ class Dvc < Formula
   end
 
   test do
-    system "#{bin}/dvc", "--version"
+    system "#{bin}/dvc", "version"
   end
 end
