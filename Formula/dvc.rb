@@ -10,15 +10,11 @@ class Dvc < Formula
   depends_on "openssl"
   depends_on "python"
 
-  # Patch from including brew build marker
-  # https://github.com/iterative/dvc/pull/2773
-  patch do
-    url "https://raw.githubusercontent.com/iterative/homebrew-dvc/master/Formula/build.patch"
-    sha256 "c4f57c9fbf28630bcd63301943a7a9634a6d93a334637db0e4a4c0143a800941"
-  end
-  
   def install
     venv = virtualenv_create(libexec)
+    ("dvc/utils/build.py").write <<~EOS
+      PKG = "brew"
+    EOS
     system libexec/"bin/pip", "install", ".[all]"
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See [1]
