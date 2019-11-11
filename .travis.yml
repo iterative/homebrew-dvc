@@ -3,5 +3,5 @@ osx_image: xcode10.1
 language: ruby
 script:
   - brew install iterative/homebrew-dvc/dvc
-  - dvc --help
+  - dvc version
   - brew uninstall dvc
