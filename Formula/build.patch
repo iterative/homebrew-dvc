@@ -1,0 +1,19 @@
+From c5bbd4f38da639be1511da6ce88cad0436de4907 Mon Sep 17 00:00:00 2001
+From: Ruslan Kuprieiev <kupruser@gmail.com>
+Date: Mon, 11 Nov 2019 03:38:45 +0200
+Subject: [PATCH] build: add brew marker
+
+---
+ dvc/utils/build.py | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 dvc/utils/build.py
+
+diff --git a/dvc/utils/build.py b/dvc/utils/build.py
+new file mode 100644
+index 00000000..8ddb0735
+--- /dev/null
++++ b/dvc/utils/build.py
+@@ -0,0 +1 @@
++PKG = "brew"
+-- 
+2.23.0
