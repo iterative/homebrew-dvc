@@ -14,6 +14,7 @@ class Dvc < Formula
   def install
     venv = virtualenv_create(libexec, "python3")
     File.open("dvc/utils/build.py", "w+") { |file| file.write("PKG = \"brew\"") }
+    system libexec/"bin/pip", "install", "Cython"
     system libexec/"bin/pip", "install", "--no-binary", ":all:", "--ignore-installed", ".[all]"
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See [1]
@@ -23,7 +24,7 @@ class Dvc < Formula
     # [1] https://github.com/peterbrittain/asciimatics/issues/95
     # [2] https://github.com/iterative/homebrew-dvc/issues/9
     system libexec/"bin/pip", "uninstall", "-y", "Pillow"
-    system libexec/"bin/pip", "uninstall", "-y", "dvc"
+    system libexec/"bin/pip", "uninstall", "-y", "dvc", "Cython"
     venv.pip_install_and_link buildpath
 
     bash_completion.install "scripts/completion/dvc.bash" => "dvc"
