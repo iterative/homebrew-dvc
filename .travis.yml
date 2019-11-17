@@ -4,4 +4,5 @@ language: ruby
 script:
   - brew install iterative/homebrew-dvc/dvc
   - dvc version
+  - brew linkage dvc
   - brew uninstall dvc
