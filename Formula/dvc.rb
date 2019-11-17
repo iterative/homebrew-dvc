@@ -7,12 +7,11 @@ class Dvc < Formula
   sha256 "a072ebf2151213c61ac7e580e51dc1cecefa4cd840e4f7ae1927d6710312cfe0"
 
   depends_on "pkg-config" => :build
-  depends_on "apache-arrow"
   depends_on "openssl@1.1"
-  depends_on "python3"
+  depends_on "python"
 
   def install
-    venv = virtualenv_create(libexec)
+    venv = virtualenv_create(libexec, "python3")
     File.open("dvc/utils/build.py", "w+") { |file| file.write("PKG = \"brew\"") }
     system libexec/"bin/pip", "install", "--no-binary", ":all:", "--ignore-installed", ".[all]"
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
