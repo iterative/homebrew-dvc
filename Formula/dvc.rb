@@ -13,7 +13,7 @@ class Dvc < Formula
   def install
     venv = virtualenv_create(libexec)
     File.open("dvc/utils/build.py", "w+") { |file| file.write("PKG = \"brew\"") }
-    system libexec/"bin/pip", "install", ".[all]"
+    system libexec/"bin/pip", "install", "--no-binary", "--ignore-installed", ".[all]"
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See [1]
     # and [2] for more info. As a workaround, we need to simply
