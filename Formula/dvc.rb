@@ -7,7 +7,7 @@ class Dvc < Formula
   sha256 "a072ebf2151213c61ac7e580e51dc1cecefa4cd840e4f7ae1927d6710312cfe0"
 
   depends_on "pkg-config" => :build
-  depends_on "Cython" => :build # required for pyarrow
+  depends_on "cython" => :build # required for pyarrow
   depends_on "openssl@1.1"
   depends_on "python"
 
