@@ -20,7 +20,7 @@ class Dvc < Formula
 #    ENV.prepend_create_path "PYTHONPATH", Formula["cython"].opt_libexec/"lib/python#{version}/site-packages"
 
     system libexec/"bin/pip", "install", "Pillow"
-    system libexec/"bin/pip", "install", "-v", "--no-binary", ":all:", ".[all]"
+    system libexec/"bin/pip", "install", "--no-binary", ":all:", ".[all]"
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See [1]
     # and [2] for more info. As a workaround, we need to simply
