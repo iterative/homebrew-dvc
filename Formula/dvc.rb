@@ -8,6 +8,7 @@ class Dvc < Formula
 
   depends_on "pkg-config" => :build
   depends_on "cython" => :build
+  depends_on "cmake" => :build
   depends_on "openssl@1.1"
   depends_on "python"
 
