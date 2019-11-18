@@ -14,12 +14,12 @@ class Dvc < Formula
   def install
     venv = virtualenv_create(libexec, "python3")
 
-    # NOTE: we will uninstall Pillow anyway, so no need to build it from source
-    system libexec/"bin/pip", "install", "Pillow"
+#    # NOTE: we will uninstall Pillow anyway, so no need to build it from source
+#    system libexec/"bin/pip", "install", "Pillow"
 
     # NOTE: pyarrow is already installed as a part of apache-arrow package, so we
     # don't need to specify `hdfs` option.
-    system libexec/"bin/pip", "install", "--no-binary", ":all:", ".[gs,s3,azure,oss,ssh]"
+    system libexec/"bin/pip", "install", "--no-binary", ":all:", "--only-binary", "Pillow", "--ignore-installed", ".[gs,s3,azure,oss,ssh]"
 
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See [1]
