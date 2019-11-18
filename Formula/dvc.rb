@@ -8,8 +8,8 @@ class Dvc < Formula
 
   depends_on "pkg-config" => :build
   depends_on "openssl@1.1"
-  depends_on "python"
   depends_on "apache-arrow"
+  depends_on "python"
 
   def install
     venv = virtualenv_create(libexec, "python3")
