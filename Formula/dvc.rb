@@ -7,6 +7,7 @@ class Dvc < Formula
   sha256 "a072ebf2151213c61ac7e580e51dc1cecefa4cd840e4f7ae1927d6710312cfe0"
 
   depends_on "pkg-config" => :build
+  depends_on "apache-arrow"
   depends_on "openssl@1.1"
   depends_on "python"
 
@@ -14,8 +15,10 @@ class Dvc < Formula
     venv = virtualenv_create(libexec, "python3")
     File.open("dvc/utils/build.py", "w+") { |file| file.write("PKG = \"brew\"") }
 
+    system libexec/"bin/python", "-c", "'import pyarrow'"
+    
     system libexec/"bin/pip", "install", "Pillow"
-    system libexec/"bin/pip", "install", "--no-binary", ":all:", "--only-binary", "pyarrow", ".[all]"
+    system libexec/"bin/pip", "install", "--no-binary", ":all:", ".[gs,s3,azure,oss,ssh]"
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See [1]
     # and [2] for more info. As a workaround, we need to simply
