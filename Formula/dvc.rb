@@ -18,7 +18,7 @@ class Dvc < Formula
     system libexec/"bin/python", "-c", "'import pyarrow'"
     
     system libexec/"bin/pip", "install", "Pillow"
-    system libexec/"bin/pip", "install", "--no-binary", ":all:", ".[gs,s3,azure,oss,ssh]"
+    system libexec/"bin/pip", "install", "--no-binary", ":all:", "--ignore-installed", ".[gs,s3,azure,oss,ssh]"
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See [1]
     # and [2] for more info. As a workaround, we need to simply
