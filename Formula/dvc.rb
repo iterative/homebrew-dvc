@@ -13,12 +13,14 @@ class Dvc < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3")
-    File.open("dvc/utils/build.py", "w+") { |file| file.write("PKG = \"brew\"") }
 
-    system libexec/"bin/python", "-c", "'import pyarrow'"
-    
+    # NOTE: we will uninstall Pillow anyway, so no need to build it from source
     system libexec/"bin/pip", "install", "Pillow"
-    system libexec/"bin/pip", "install", "--no-binary", ":all:", "--ignore-installed", ".[gs,s3,azure,oss,ssh]"
+
+    # NOTE: pyarrow is already installed as a part of apache-arrow package, so we
+    # don't need to specify `hdfs` option.
+    system libexec/"bin/pip", "install", "--no-binary", ":all:", ".[gs,s3,azure,oss,ssh]"
+
     # NOTE: dvc depends on asciimatics, which depends on Pillow, which
     # uses liblcms2.2.dylib that causes troubles on mojave. See [1]
     # and [2] for more info. As a workaround, we need to simply
@@ -28,6 +30,12 @@ class Dvc < Formula
     # [2] https://github.com/iterative/homebrew-dvc/issues/9
     system libexec/"bin/pip", "uninstall", "-y", "Pillow"
     system libexec/"bin/pip", "uninstall", "-y", "dvc"
+
+    # NOTE: dvc uses this file [1] to know which package it was installed from,
+    # so that it is able to provide appropriate instructions for updates.
+    # [1] https://github.com/iterative/dvc/blob/0.68.1/dvc/utils/pkg.py
+    File.open("dvc/utils/build.py", "w+") { |file| file.write("PKG = \"brew\"") }
+
     venv.pip_install_and_link buildpath
 
     bash_completion.install "scripts/completion/dvc.bash" => "dvc"
