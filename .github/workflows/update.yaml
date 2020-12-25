@@ -8,6 +8,8 @@ jobs:
   update:
     runs-on: macos-latest
     steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
     - name: Install pipgrip
       run: brew install pipgrip
     - name: Update Homebrew formula
