@@ -3,9 +3,12 @@ on:
   schedule:
     - cron: '0 0 * * *'
 jobs:
-  - name: Update Homebrew formula
-    uses: dawidd6/action-homebrew-bump-formula@v3
-    with:
-      token: ${{secrets.TOKEN}}
-      formula: dvc
-      livecheck: true
+  update:
+    runs-on: macos-latest
+    steps:
+    - name: Update Homebrew formula
+      uses: dawidd6/action-homebrew-bump-formula@v3
+      with:
+        token: ${{secrets.TOKEN}}
+        formula: dvc
+        livecheck: true
