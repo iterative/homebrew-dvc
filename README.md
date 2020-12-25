@@ -2,7 +2,7 @@
 
 # Installation
 
-DVC is now part of the default formulae, so to install it, simply run:
+[DVC is now part of the default formulae](https://github.com/Homebrew/homebrew-core/blob/master/Formula/dvc.rb), so to install it, simply run:
 
 ```
 brew install dvc
