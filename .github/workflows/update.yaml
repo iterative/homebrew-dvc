@@ -1,7 +1,9 @@
 name: update
 on:
+  push:
+    branches: master
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 0 * * *'
 jobs:
   update:
     runs-on: macos-latest
