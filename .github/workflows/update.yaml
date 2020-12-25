@@ -8,6 +8,8 @@ jobs:
   update:
     runs-on: macos-latest
     steps:
+    - name: Install pipgrip
+      run: brew install pipgrip
     - name: Update Homebrew formula
       uses: dawidd6/action-homebrew-bump-formula@v3
       with:
