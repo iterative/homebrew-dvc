@@ -22,4 +22,5 @@ jobs:
         git config --global user.email ruslan@iterative.ai
         brew upgrade --force
         brew install pipgrip
+        brew install dvc
         brew bump-formula-pr dvc --no-browse --version ${{ steps.latest.outputs.version }}
