@@ -8,15 +8,13 @@ jobs:
   update:
     runs-on: macos-latest
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v2
-    - name: Install pipgrip
-      run: brew install pipgrip
+    - name: Check latest
+      id: latest
+      run: |
+        version=$(brew livecheck dvc --formula --json | jq '.[0].version.latest')
+        echo "::set-output name=version::$version"
     - name: Update Homebrew formula
-      uses: dawidd6/action-homebrew-bump-formula@v3
       env:
-        HOMEBREW_VERBOSE: true
-      with:
-        token: ${{secrets.TOKEN}}
-        formula: dvc
-        livecheck: true
+        HOMEBREW_GITHUB_API_TOKEN: ${{secrets.TOKEN}}
+      run:
+      - brew bump-formula-pr dvc --version ${{ steps.latest.outputs.version }}
