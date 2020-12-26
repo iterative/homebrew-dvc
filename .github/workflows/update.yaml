@@ -8,10 +8,12 @@ jobs:
   update:
     runs-on: macos-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Check latest
       id: latest
+      shell: bash
       run: |
-        version=$(brew livecheck dvc --json | jq '.[0].version.latest')
+        version=$(./latest.sh)
         echo "::set-output name=version::$version"
     - name: Update Homebrew formula
       env:
