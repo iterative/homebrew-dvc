@@ -14,13 +14,21 @@ jobs:
       run: |
         version=$(bash ./latest.sh)
         echo "::set-output name=version::$version"
+    - name: Update homebrew-core fork
+      run: |
+        git config --global user.name 'Ruslan Kuprieiev'
+        git config --global user.email ruslan@iterative.ai
+        git clone https://efiop:${{ secrets.TOKEN }}@github.com/efiop/homebrew-core
+        cd homebrew-core
+        git remote add upstream https://github.com/homebrew/homebrew-core
+        git fetch upstream
+        git rebase upstream/master
+        git push -f
     - name: Update Homebrew formula
       env:
         HOMEBREW_GITHUB_API_TOKEN: ${{secrets.TOKEN}}
       run: |
-        git config --global user.name 'Ruslan Kuprieiev'
-        git config --global user.email ruslan@iterative.ai
         brew install pipgrip
         brew upgrade
         pipgrip --json --no-cache-dir dvc==1.11.9
-        brew bump-formula-pr dvc --no-browse --force --version ${{ steps.latest.outputs.version }}
+        brew bump-formula-pr dvc --no-browse --dry-run --version ${{ steps.latest.outputs.version }}
