@@ -20,7 +20,7 @@ jobs:
       run: |
         git config --global user.name 'Ruslan Kuprieiev'
         git config --global user.email ruslan@iterative.ai
-        brew upgrade --force
+        brew update
         brew install pipgrip
         brew install dvc
         brew bump-formula-pr dvc --no-browse --version ${{ steps.latest.outputs.version }}
