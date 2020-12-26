@@ -11,7 +11,7 @@ jobs:
     - name: Check latest
       id: latest
       run: |
-        version=$(brew livecheck dvc --formula --json | jq '.[0].version.latest')
+        version=$(brew livecheck dvc --json | jq '.[0].version.latest')
         echo "::set-output name=version::$version"
     - name: Update Homebrew formula
       env:
