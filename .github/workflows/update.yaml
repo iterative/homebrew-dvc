@@ -30,5 +30,4 @@ jobs:
       run: |
         brew install pipgrip
         brew upgrade
-        pipgrip --json --no-cache-dir dvc==1.11.9
-        brew bump-formula-pr dvc --no-browse --dry-run --version ${{ steps.latest.outputs.version }}
+        brew bump-formula-pr dvc --no-browse --force --version ${{ steps.latest.outputs.version }}
