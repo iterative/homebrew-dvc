@@ -16,4 +16,6 @@ jobs:
     - name: Update Homebrew formula
       env:
         HOMEBREW_GITHUB_API_TOKEN: ${{secrets.TOKEN}}
-      run: brew bump-formula-pr dvc --version ${{ steps.latest.outputs.version }}
+      run: |
+        brew install pipgrip
+        brew bump-formula-pr dvc --version ${{ steps.latest.outputs.version }}
