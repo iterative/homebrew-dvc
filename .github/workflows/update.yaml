@@ -23,7 +23,7 @@ jobs:
         git remote add upstream https://github.com/homebrew/homebrew-core
         git fetch upstream
         git rebase upstream/master
-        git push -f
+        git push -f https://efiop:${{ secrets.TOKEN }}@github.com/efiop/homebrew-core
     - name: Update Homebrew formula
       env:
         HOMEBREW_GITHUB_API_TOKEN: ${{secrets.TOKEN}}
