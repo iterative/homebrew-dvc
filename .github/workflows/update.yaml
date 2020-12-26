@@ -21,4 +21,4 @@ jobs:
         git config --global user.email ruslan@iterative.ai
         brew install pipgrip
         brew update
-        brew bump-formula-pr dvc --no-browse --dry-run --version ${{ steps.latest.outputs.version }}
+        brew bump-formula-pr dvc --no-browse --force --version ${{ steps.latest.outputs.version }}
