@@ -22,5 +22,5 @@ jobs:
         git config --global user.email ruslan@iterative.ai
         brew update
         brew install pipgrip || brew link --overwrite python@3.9
-        brew install dvc
+        brew install dvc || brew link --overwrite gcc@8
         brew bump-formula-pr dvc --no-browse --version ${{ steps.latest.outputs.version }}
