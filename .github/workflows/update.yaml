@@ -14,7 +14,7 @@ jobs:
         git config --global user.name 'Ruslan Kuprieiev'
         git config --global user.email ruslan@iterative.ai
     - name: Install deps
-    - run: |
+      run: |
         brew update
         brew install pipgrip || brew link --overwrite python@3.9
         brew install dvc || brew link --overwrite gcc@8
