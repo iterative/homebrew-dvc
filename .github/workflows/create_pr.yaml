@@ -1,0 +1,22 @@
+name: Create PR
+on:
+  push:
+    branches: master
+jobs:
+  update:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup git config
+      run: |
+        git config --global user.name 'Ruslan Kuprieiev'
+        git config --global user.email ruslan@iterative.ai
+    - name: Install deps
+      run: |
+        brew update
+        brew install pipgrip || brew link --overwrite python@3.9
+        brew install dvc || brew link --overwrite gcc@8
+    - name: Update Homebrew formula
+      env:
+        HOMEBREW_GITHUB_API_TOKEN: ${{secrets.TOKEN}}
+      run: brew bump-formula-pr dvc --no-browse --version $(cat version) --verbose

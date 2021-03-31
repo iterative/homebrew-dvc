@@ -1,4 +1,4 @@
-name: update
+name: Update package
 on:
   push:
     branches: master
@@ -6,19 +6,25 @@ on:
     - cron: '0 0 * * *'
 jobs:
   update:
-    runs-on: macos-latest
+    runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@v2
-    - name: Setup git config
+    - name: get latest dvc version
+      id: latest
+      shell: bash
       run: |
-        git config --global user.name 'Ruslan Kuprieiev'
-        git config --global user.email ruslan@iterative.ai
-    - name: Install deps
+        version=$(./latest.sh)
+        echo "::set-output name=version::$version"
+    - name: try update
+      id: update
+      shell: bash
       run: |
-        brew update
-        brew install pipgrip || brew link --overwrite python@3.9
-        brew install dvc || brew link --overwrite gcc@8
-    - name: Update Homebrew formula
-      env:
-        HOMEBREW_GITHUB_API_TOKEN: ${{secrets.TOKEN}}
-      run: brew bump-formula-pr dvc --no-browse --version $(bash ./latest.sh) --verbose
+        echo latest version ${{ steps.latest.outputs.version }}
+        echo ${{ steps.latest.outputs.version }} > version
+        echo "::set-output name=changes::$(git diff)"
+    - name: create PR
+      if: ${{ steps.update.outputs.changes != '' }}
+      uses: peter-evans/create-pull-request@v3
+      with:
+        commit-message: dvc ${{ steps.latest.outputs.version }}
+        title: dvc ${{ steps.latest.outputs.version }}
