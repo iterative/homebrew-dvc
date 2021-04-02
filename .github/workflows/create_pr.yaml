@@ -19,5 +19,4 @@ jobs:
     - name: Update Homebrew formula
       env:
         HOMEBREW_GITHUB_API_TOKEN: ${{secrets.TOKEN}}
-      run: brew update-python-resources --version $(cat version) dvc --verbose
-      #run: brew bump-formula-pr dvc --no-browse --version $(cat version) --verbose
+      run: brew bump-formula-pr dvc --no-browse --version $(cat version) --verbose
