@@ -19,4 +19,4 @@ jobs:
     - name: Update Homebrew formula
       env:
         HOMEBREW_GITHUB_API_TOKEN: ${{secrets.TOKEN}}
-      run: brew bump-formula-pr dvc --no-browse --version $(cat version) --verbose --force
+      run: brew bump-formula-pr dvc --no-browse --version $(cat version) --verbose
