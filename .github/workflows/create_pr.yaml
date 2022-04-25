@@ -19,4 +19,8 @@ jobs:
     - name: Update Homebrew formula
       env:
         HOMEBREW_GITHUB_API_TOKEN: ${{secrets.TOKEN}}
-      run: brew bump-formula-pr dvc --no-browse --version $(cat version) --verbose
+      # NOTE: Hint jmespath<1.0 due to https://github.com/ddelange/pipgrip/issues/77
+      run: brew bump-formula-pr dvc --no-browse --version $(cat version) --verbose \
+        --python-package-name=dvc[all] \
+        --python-extra-packages=jmespath<1.0 \
+        --python-exclude-packages=protobuf,pyarrow,six,tabulate
