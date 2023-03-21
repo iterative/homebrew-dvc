@@ -2,27 +2,30 @@ name: Update package
 on:
   schedule:
     - cron: '0 0 * * *'
+  workflow_dispatch:
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - uses: iterative/setup-cml@v1
     - name: get latest dvc version
       id: latest
       shell: bash
       run: |
         version=$(./latest.sh)
-        echo "::set-output name=version::$version"
+        echo "version=$version" >> $GITHUB_OUTPUT
     - name: try update
       id: update
       shell: bash
       run: |
         echo latest version ${{ steps.latest.outputs.version }}
-        echo ${{ steps.latest.outputs.version }} > version
-        echo "::set-output name=changes::$(git diff)"
+        ${{ steps.latest.outputs.version }} > version
+        echo "changes=$(git diff | tr '\n' ' ')" >> $GITHUB_OUTPUT
     - name: create PR
       if: ${{ steps.update.outputs.changes != '' }}
-      uses: peter-evans/create-pull-request@v4
-      with:
-        commit-message: dvc ${{ steps.latest.outputs.version }}
-        title: dvc ${{ steps.latest.outputs.version }}
+      run: |
+        cml pr create \
+          --token="${{ secrets.GITHUB_TOKEN }}" \
+          --message="dvc ${{ steps.latest.outputs.version }}" \
+          --title="dvc ${{ steps.latest.outputs.version }}" .
